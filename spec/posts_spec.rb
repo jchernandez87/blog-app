@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe 'Posts controller actions', type: :request do
   describe 'GET /users/:id/posts' do
     it 'returns a correct action' do
-      get '/users'
+      get '/users/1/posts'
       expect(response).to have_http_status(:ok)
       expect(response).to render_template(:index)
       expect(response.body).to include('Display all posts')

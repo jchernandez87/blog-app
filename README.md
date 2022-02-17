@@ -98,11 +98,19 @@ In this project, I will build a blog-app using ruby on rails.
    ```sh
    npm install
    ```
-4. Start the server
+4. Create database
+   ```sh
+   rails db:create
+   ```
+5. Migrate database
+   ```sh
+   rails db:migrate
+   ```         
+6. Start the server
    ```sh
    rails s
    ```
-4. Test app
+7. Test app
    ```sh
    rspec .\spec\file_name_spec.rb   
    ```

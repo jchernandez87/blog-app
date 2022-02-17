@@ -102,6 +102,10 @@ In this project, I will build a blog-app using ruby on rails.
    ```sh
    rails s
    ```
+4. Test app
+   ```sh
+   rspec .\spec\file_name_spec.rb   
+   ```
 
 
 <!-- USAGE EXAMPLES -->

@@ -1,7 +1,7 @@
-<article class="post-card">
+<article class="post-card flex-column card-width border">
   <div class="post-info">
-    <h4><%= post.title %></h4>
+    <h4 class="post-title"><%= post.title %></h4>
     <p><%= post.text %></p>
   </div>
-  <span>Comments: <%= post.comments_counter %>, Likes: <%= post.likes_counter %></span>
+  <span class="post-stats">Comments: <%= post.comments_counter %>, Likes: <%= post.likes_counter %></span>
 </article>

@@ -1,5 +1,7 @@
-<div class="users-index">
+<div class="container flex center">
+  <div>
     <% @users.each do |user| %>
       <%= render 'shared/card', user: user %>
     <% end %>
+  </div>
 </div>

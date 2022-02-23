@@ -1,11 +1,20 @@
-<div class="post-index">
+<div class="post-index container flex-column center">
   <%= render 'shared/card', user: @user %>
   <% @posts.each do |post|%>
     <%= render 'shared/post', post: post %>
-    <% @comments.each do |comment|%>
-      <% if comment.post_id == post.id %>
-        <li><%= comment.author.name %>: <%= comment.text %></li>
-      <% end %>
+    <% if post.comments_counter == 0 %>
+    <div class="border card-width">
+      <span>This post don't Have any comments</span>
+    </div>
+    <% else %>
+        <div class="comments-container card-width border">
+      <% @comments.each do |comment|%>
+        <% if comment.post_id == post.id %>
+          <li class="little-gap"><%= comment.author.name %>: <%= comment.text %></li>
+        <% end %>
+    <% end %>
+    </div>
     <% end %>
   <% end %>
+  <button class="btn mid-gap">Pagination</button>
 </div>

@@ -1,13 +1,11 @@
-<article class="user-card">
-  <%= link_to user do %>
+<article class="user-card card-width flex-row border">
   <div class="img-container">
     <%= image_tag(user.photo, alt: 'user photo') %>
   </div>
-  <div class="user-info">
-      <h2><%= user.name %></h2>
-    <div>
+  <div class="user-info flex-row center-between">
+    <h2><%= user.name %></h2>
+    <div class="posts-info">
       <p>Number of posts: <%= user.posts_counter %></p>
     </div>
   </div>
-  <% end %>
 </article>

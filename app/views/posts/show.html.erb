@@ -1,1 +1,12 @@
-<h1>Show one post<h1>
+<div>
+  <%= render 'shared/post', post: @post %>
+  <ul class='comments-list'>
+    <% @comments.each do |comment| %>
+      <% if comment.post_id == @post.id %>
+        <li class='user-comment'>
+          <p><%= comment.author.name %> <%= comment.text %></p>
+        </li>
+      <% end %>
+    <% end %>
+  </ul>
+</div>

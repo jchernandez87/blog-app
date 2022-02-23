@@ -1,1 +1,13 @@
-<h1>Show one user<h1>
+<div class="users-show">
+  <header>
+    <%= render 'shared/card', user: @user %>
+  </header>
+  <div>
+    <p><%= @user.bio %></p>
+  </div>
+  <ul>
+    <% @posts.each do |post| %>
+      <%= render 'shared/post', post: post %>
+    <% end %>
+  <ul>
+</div>

@@ -1,1 +1,11 @@
-<h1>Display all posts<h1>
+<div class="post-index">
+  <%= render 'shared/card', user: @user %>
+  <% @posts.each do |post|%>
+    <%= render 'shared/post', post: post %>
+    <% @comments.each do |comment|%>
+      <% if comment.post_id == post.id %>
+        <li><%= comment.author.name %>: <%= comment.text %></li>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>

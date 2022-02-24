@@ -1,0 +1,12 @@
+.post-card {
+  margin: 5px 0;
+}
+
+.post-card .post-info .post-title {
+  margin-bottom: 8px;
+}
+
+.post-card .post-stats {
+  margin-top: 5px;
+  align-self: flex-end;
+}

@@ -1,1 +1,18 @@
-<h1>Show one post<h1>
+<div class="post-show container flex-column center">
+  <%= render 'shared/post', post: @post %>
+  <% if @post.comments_counter == 0 %>
+  <div class="border card-width">
+    <span>This post don't have any comment</span>
+  </div>
+  <% else %>
+  <ul class='comments-list card-width border'>
+    <% @comments.each do |comment| %>
+      <% if comment.post_id == @post.id %>
+        <li class='user-comment little-gap'>
+          <%= comment.author.name %> <%= comment.text %>
+        </li>
+      <% end %>
+    <% end %>
+  </ul>
+  <% end %>
+</div>

@@ -1,1 +1,14 @@
-<h1>Show one user<h1>
+<div class="container flex-column center">
+  <header>
+    <%= render 'shared/card', user: @user %>
+  </header>
+  <div class="user-bio card-width border ">
+    <p><%= @user.bio %></p>
+  </div>
+  <ul>
+    <% @posts.each do |post| %>
+      <%= render 'shared/post', post: post %>
+    <% end %>
+  </ul>
+  <div class="mid-gap"><%= link_to "See all posts", user_posts_path(user_id: @user), class: "btn" %></div>
+</div>

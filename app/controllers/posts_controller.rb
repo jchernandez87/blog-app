@@ -4,13 +4,13 @@ class PostsController < ApplicationController
   def index
     @user = User.find(params[:user_id])
     @posts = Post.joins(:author).where(author: { id: @user.id }).order(created_at: :desc)
-    @comments = Comment.order(created_at: :asc)
+    @comments = Comment.includes(:author).order(created_at: :asc)
   end
 
   def show
     @user = User.find(params[:user_id])
     @post = @user.posts.find(params[:id])
-    @comments = Comment.order(created_at: :desc)
+    @comments = Comment.includes(:author).order(created_at: :desc)
   end
 
   def new

@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :update_interactions
-  
+
   def index
     @user = User.find(params[:user_id])
     @posts = Post.joins(:author).where(author: { id: @user.id }).order(created_at: :desc)
@@ -33,12 +33,20 @@ class PostsController < ApplicationController
     end
   end
 
+  def like
+    user = User.find(params[:user_id])
+    post = user.posts.find(params[:id])
+    Like.create(author_id: user.id, post_id: post.id)
+    redirect_to user_post_path(user, post)
+  end
+
   private
 
   def update_interactions
     @posts = Post.all
     @posts.each do |post|
       Comment.update_comments_counter(post)
+      Like.update_likes_counter(post)
     end
   end
 end

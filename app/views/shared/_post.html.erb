@@ -4,4 +4,5 @@
     <p><%= post.text %></p>
   </div>
   <span class="post-stats">Comments: <%= post.comments_counter %>, Likes: <%= post.likes_counter %></span>
+  <%= button_to 'Like', like_path(user_id: @user, id: post), method: "put" %>
 </article>

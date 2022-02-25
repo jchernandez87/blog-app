@@ -13,6 +13,8 @@ class Post < ApplicationRecord
     Comment.where("post_id = #{post.id}").order(created_at: :desc).limit(5)
   end
 
+  private
+
   def update_interactions
     @posts = Post.all
     @posts.each do |post|

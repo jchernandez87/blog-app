@@ -16,5 +16,8 @@
     </div>
     <% end %>
   <% end %>
+  <div class="flex-row mid-gap">
+    <%= link_to 'Create new post', new_user_post_path(user_id: @user), class: "btn" %>
   <button class="btn mid-gap">Pagination</button>
+  </div>
 </div>

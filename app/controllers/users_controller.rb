@@ -1,13 +1,21 @@
 class UsersController < ApplicationController
+  before_action :update_interactions
+
   def index
     @users = User.all.order(id: :asc)
-    @users.each do |user|
-      Post.update_post_count(user)
-    end
   end
 
   def show
     @user = User.find(params[:id])
     @posts = User.recent_posts(@user)
+  end
+
+  private
+
+  def update_interactions
+    @users = User.all
+    @users.each do |user|
+      Post.update_post_count(user)
+    end
   end
 end

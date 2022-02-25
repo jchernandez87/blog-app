@@ -12,7 +12,8 @@ a {
 }
 
 .container {
-  height: 100vh;
+  height: auto;
+  padding: 25px;
 }
 
 .flex {
@@ -63,6 +64,7 @@ a {
   border-radius: 5px;
   padding: 8px 10px;
   background-color: transparent;
+  cursor: pointer;
 }
 
 .border {
@@ -75,4 +77,8 @@ a {
 
 .mid-gap {
   margin: 10px 0;
+}
+
+.font-mid {
+  font-size: 18px;
 }

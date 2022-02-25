@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
-  resources :users, only: [ :index, :show ] do
-    resources :posts, only: [ :index, :show ]
+  root "users#index"
+
+  resources :users, only: [ :index, :show] do
+    resources :posts, only: [ :index, :show, :new, :create ] do
+      resource :comment, only: [ :new, :create ]
+    end
   end
 
-  root "users#index"
+  put '/posts/like', to: 'posts#like', as: 'like'
 end

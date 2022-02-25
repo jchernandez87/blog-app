@@ -36,8 +36,13 @@ class PostsController < ApplicationController
   def like
     user = User.find(params[:user_id])
     post = user.posts.find(params[:id])
-    Like.create(author_id: user.id, post_id: post.id)
-    redirect_to user_post_path(user, post)
+    if is_liked = Like.where(author_id: user, post_id: post).exists?
+      flash.now[:error] = 'Error: You already liked this post'
+      redirect_to user_posts_path(user)
+    else
+      Like.create(author_id: user.id, post_id: post.id)
+      redirect_to user_posts_path(user)
+    end
   end
 
   private

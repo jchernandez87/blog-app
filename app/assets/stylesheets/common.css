@@ -12,7 +12,8 @@ a {
 }
 
 .container {
-  height: 100vh;
+  height: auto;
+  padding: 25px;
 }
 
 .flex {

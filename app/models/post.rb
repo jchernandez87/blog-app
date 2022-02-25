@@ -12,4 +12,11 @@ class Post < ApplicationRecord
   def self.recent_comments(post)
     Comment.where("post_id = #{post.id}").order(created_at: :desc).limit(5)
   end
+
+  def update_interactions
+    @posts = Post.all
+    @posts.each do |post|
+      Comment.update_comments_counter(post)
+    end
+  end
 end

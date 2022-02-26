@@ -33,15 +33,15 @@ RSpec.describe Post, type: :model do
   end
 
   it 'should update users post count' do
-    user = User.create(id: 1, name: 'Joe', photo: 'photo.url', bio: 'teacher from germany', posts_counter: 0)
-    Post.create(id: 1, author_id: user.id, title: 'First post', text: 'text sample', comments_counter: 1,
+    user = User.create(name: 'Joe', photo: 'photo.url', bio: 'teacher from germany', posts_counter: 0)
+    Post.create(author_id: user.id, title: 'First post', text: 'text sample', comments_counter: 1,
                 likes_counter: 1)
     Post.update_post_count(user)
     expect(user.posts_counter).to be(1)
   end
 
   it 'should return recent comments' do
-    user = User.create(id: 1, name: 'Joe', photo: 'photo.url', bio: 'teacher from germany', posts_counter: 0)
+    user = User.create(name: 'Joe', photo: 'photo.url', bio: 'teacher from germany', posts_counter: 0)
     post = Post.create(author_id: user.id, title: 'First post', text: 'text sample', comments_counter: 1,
                        likes_counter: 1)
     Comment.create(author_id: user.id, post_id: post.id, text: 'New Comment')

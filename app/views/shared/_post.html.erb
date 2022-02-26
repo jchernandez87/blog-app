@@ -6,6 +6,6 @@
   <span class="post-stats">Comments: <%= post.comments_counter %>, Likes: <%= post.likes_counter %></span>
   <div class="flex-row mid-gap">
     <%= link_to 'Add comment', new_user_post_comment_path(user_id: @user, post_id: post), class: "btn" %>
-    <%= button_to 'Like', like_path(user_id: @user, id: post), method: "put", class: "btn"%>
+    <%= button_to 'Like', like_path(user_id: @user, id: post), remote: true, method: "put", class: "btn"%>
   </div>
 </article>

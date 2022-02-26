@@ -4,13 +4,13 @@ class PostsController < ApplicationController
   def index
     @user = User.find(params[:user_id])
     @posts = Post.joins(:author).where(author: { id: @user.id }).order(created_at: :desc)
-    @comments = Comment.order(created_at: :asc)
+    @comments = Comment.includes(:author).order(created_at: :asc)
   end
 
   def show
     @user = User.find(params[:user_id])
     @post = @user.posts.find(params[:id])
-    @comments = Comment.order(created_at: :desc)
+    @comments = Comment.includes(:author).order(created_at: :desc)
   end
 
   def new
@@ -38,9 +38,10 @@ class PostsController < ApplicationController
     post = user.posts.find(params[:id])
     is_liked = Like.where(author_id: user, post_id: post).exists?
     if is_liked
-      flash.now[:error] = 'Error: You already liked this post'
+      flash[:error] = 'Error: You already liked this post'
     else
       Like.create(author_id: user.id, post_id: post.id)
+      flash[:success] = 'You liked this post'
     end
     redirect_to user_posts_path(user)
   end

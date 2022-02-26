@@ -1,23 +1,35 @@
 <div class="post-index container flex-column center">
   <%= render 'shared/card', user: @user %>
+  <% flash.each do |type, msg| %>
+    <% if type == 'success' %>
+      <h3 class="mid-gap">
+        <%= msg %>
+      </h3>
+    <% end %>
+    <% if type == 'error' %>
+      <h3>
+        <%= msg %>
+      </h3>
+    <% end %>
+  <% end %>
   <% @posts.each do |post|%>
     <%= render 'shared/post', post: post %>
     <% if post.comments_counter == 0 %>
-    <div class="border card-width">
-      <span>This post don't Have any comments</span>
-    </div>
+      <div class="border card-width">
+        <span>This post don't Have any comments</span>
+      </div>
     <% else %>
-        <div class="comments-container card-width border">
-      <% @comments.each do |comment|%>
-        <% if comment.post_id == post.id %>
-          <li class="little-gap"><%= comment.author.name %>: <%= comment.text %></li>
+      <div class="comments-container card-width border">
+        <% @comments.each do |comment|%>
+          <% if comment.post_id == post.id %>
+            <li class="little-gap"><%= comment.author.name %>: <%= comment.text %></li>
+          <% end %>
         <% end %>
-    <% end %>
-    </div>
+      </div>
     <% end %>
   <% end %>
   <div class="flex-row mid-gap">
     <%= link_to 'Create new post', new_user_post_path(user_id: @user), class: "btn" %>
-  <button class="btn mid-gap">Pagination</button>
+    <button class="btn mid-gap">Pagination</button>
   </div>
 </div>

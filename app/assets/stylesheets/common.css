@@ -83,3 +83,15 @@ a {
 .font-mid {
   font-size: 18px;
 }
+
+.notice {
+  background-color: lightgreen;
+  text-align: center;
+  color: white;
+}
+
+.alert {
+  background-color: red;
+  text-align: center;
+  color: white;
+}

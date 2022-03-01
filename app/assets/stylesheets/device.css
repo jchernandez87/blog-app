@@ -9,5 +9,6 @@
 }
 
 .alert {
-    background-color: rgb(236, 230, 230);
+    background-color: orange;
+    color: white;
 }

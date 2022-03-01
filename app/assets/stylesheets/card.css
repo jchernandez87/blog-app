@@ -1,6 +1,7 @@
 .user-card {
-  margin: 5px 0;
-  height: 75px;
+  width: 400px;
+  padding: 15px;
+  height: 80px;
   justify-content: space-between;
   align-items: center;
 }
@@ -10,10 +11,11 @@
 }
 
 .user-card .user-info {
-  height: 100%;
   width: 60%;
 }
 
-.user-card .user-info .posts-info {
-  align-self: flex-end;
+.user-card .user-info .posts-info p {
+  font-size: 12px;
+  margin: 0;
+  padding: 0;
 }

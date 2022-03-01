@@ -1,0 +1,13 @@
+.login-page {
+    text-align: center;
+    /* margin: 10%; */
+    width: 90vw;
+}
+
+.actions {
+    width: 90%;
+}
+
+.alert {
+    background-color: rgb(236, 230, 230);
+}

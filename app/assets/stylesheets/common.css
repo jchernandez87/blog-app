@@ -54,7 +54,6 @@ a {
 }
 
 .card-width {
-  width: 320px;
   padding: 15px;
 }
 
@@ -82,4 +81,16 @@ a {
 
 .font-mid {
   font-size: 18px;
+}
+
+.notice {
+  text-align: center;
+  background-color: lightgreen;
+  color: white;
+}
+
+.alert {
+  text-align: center;
+  color: white;
+  background-color: red;
 }

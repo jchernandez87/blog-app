@@ -50,9 +50,9 @@ class PostsController < ApplicationController
     post = user.posts.find(params[:id])
     if post.destroy
       Post.update_post_count(User.find(current_user.id))
-      flash[:success] = "Post deleted successfully"
+      flash[:success] = 'Post deleted successfully'
     else
-      flash[:error] = "Opps! Somthing went wrong!"
+      flash[:error] = 'Opps! Somthing went wrong!'
     end
     redirect_to user_posts_path(user)
   end

@@ -1,19 +1,21 @@
 <div class="post-show container flex-column center">
   <%= render 'shared/post', post: @post %>
   <% if @post.comments_counter == 0 %>
-  <div class="border card-width">
-    <span>This post don't have any comment</span>
-  </div>
+    <div class="border card-width">
+      <span>This post don't have any comment</span>
+    </div>
   <% else %>
-  <ul class='comments-list card-width border'>
-    <% @comments.each do |comment| %>
-      <% if comment.post_id == @post.id %>
-        <li class='user-comment little-gap'>
-          <%= comment.author.name %> <%= comment.text %>
-           <%= button_to 'Delete',  user_post_comment_path(user_id: @user, post_id: @post), remote: true, method: :delete, class: "btn"%>
-        </li>
+    <ul class='comments-list card-width border'>
+      <% @comments.each do |comment| %>
+        <% if comment.post_id == @post.id %>
+          <li class='user-comment little-gap'>
+            <%= comment.author.name %> <%= comment.text %>
+            <% if can? :destroy, comment %>
+              <%= button_to 'Delete',  user_post_comment_path(user_id: @user, post_id: @post, id: comment.id), method: :delete, class: "btn btn-primary"%>
+            <% end %>
+          </li>
+        <% end %>
       <% end %>
-    <% end %>
-  </ul>
+    </ul>
   <% end %>
 </div>

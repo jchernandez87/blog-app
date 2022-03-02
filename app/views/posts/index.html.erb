@@ -23,6 +23,7 @@
         <% @comments.each do |comment|%>
           <% if comment.post_id == post.id %>
             <li class="little-gap"><%= comment.author.name %>: <%= comment.text %></li>
+          
           <% end %>
         <% end %>
       </div>

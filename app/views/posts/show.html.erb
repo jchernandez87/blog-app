@@ -10,7 +10,7 @@
       <% if comment.post_id == @post.id %>
         <li class='user-comment little-gap'>
           <%= comment.author.name %> <%= comment.text %>
-           <%= button_to 'Delete',  user_post_comment_path(user_id: @user, post_id: @post, id: id), remote: true, method: :delete, class: "btn"%>
+           <%= button_to 'Delete',  user_post_comment_path(user_id: @user, post_id: @post), remote: true, method: :delete, class: "btn"%>
         </li>
       <% end %>
     <% end %>

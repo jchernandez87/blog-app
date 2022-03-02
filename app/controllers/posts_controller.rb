@@ -46,6 +46,17 @@ class PostsController < ApplicationController
     redirect_to user_posts_path(user)
   end
 
+  def destroy
+    user = User.find(params[:user_id])
+    post = user.posts.find(params[:id])
+    if post.destroy
+      flash[:success] = "Post deleted successfully"
+    else
+      flash[:error] = "Opps! Somthing went wrong!"
+    end
+    redirect_to user_posts_path(user)
+  end
+
   private
 
   def update_interactions

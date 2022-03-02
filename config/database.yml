@@ -24,13 +24,13 @@ default: &default
 development:
   <<: *default
   username: postgres
-  password: password
+  password: PassWord
   database: blog_app_development
 
 test:
   <<: *default
   username: postgres
-  password: password
+  password: PassWord
   database: blog_app_test
 
 production:

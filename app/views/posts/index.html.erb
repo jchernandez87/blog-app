@@ -19,10 +19,15 @@
         <span>This post don't Have any comments</span>
       </div>
     <% else %>
-      <div class="comments-container card-width border">
+      <div class="comments-container w-25 border mb-4 p-3">
         <% @comments.each do |comment|%>
           <% if comment.post_id == post.id %>
-            <li class="little-gap"><%= comment.author.name %>: <%= comment.text %></li>
+            <li class="little-gap">
+              <%= comment.author.name %>: <%= comment.text %>
+              <% if can? :destroy, comment %>
+                 <%= button_to 'Delete',  user_post_comment_path(user_id: @user.id, post_id: comment.post_id, id: comment.id), method: :delete, class: "btn btn-danger mt-2" %>
+              <% end %>
+            </li>
           <% end %>
         <% end %>
       </div>

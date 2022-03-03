@@ -1,3 +1,4 @@
+<%= link_to user_posts_path(user_id: user), class: "link-to" do %>
 <article class="user-card flex-row border mt-3">
   <div class="img-container">
     <%= image_tag(user.photo, alt: 'user photo') %>
@@ -9,3 +10,4 @@
     </div>
   </div>
 </article>
+<% end %>

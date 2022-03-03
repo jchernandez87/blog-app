@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_action :update_interactions
+  load_and_authorize_resource
 
   def index
     @user = User.find(params[:user_id])
@@ -22,9 +23,8 @@ class PostsController < ApplicationController
     @post.title = params[:post][:title]
     @post.text = params[:post][:text]
     @post.author_id = params[:user_id]
-    @post.comments_counter = 0
-    @post.likes_counter = 0
     if @post.save
+      Post.update_post_count(User.find(current_user.id))
       flash[:success] = 'Post saved successfully'
       redirect_to user_posts_path(@post.author_id)
     else
@@ -42,6 +42,18 @@ class PostsController < ApplicationController
     else
       Like.create(author_id: user.id, post_id: post.id)
       flash[:success] = 'You liked this post'
+    end
+    redirect_to user_posts_path(user)
+  end
+
+  def destroy
+    user = User.find(params[:user_id])
+    post = user.posts.find(params[:id])
+    if post.destroy
+      Post.update_post_count(User.find(current_user.id))
+      flash[:success] = 'Post deleted successfully'
+    else
+      flash[:error] = 'Opps! Somthing went wrong!'
     end
     redirect_to user_posts_path(user)
   end

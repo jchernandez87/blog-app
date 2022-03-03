@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   before_action :update_interactions
-
+  load_and_authorize_resource
+  
   def index
     @user = User.find(params[:user_id])
     @posts = Post.joins(:author).where(author: { id: @user.id }).order(created_at: :desc)

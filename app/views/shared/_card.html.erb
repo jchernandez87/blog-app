@@ -1,7 +1,7 @@
-<%= link_to user_posts_path(user_id: user), class: "link-to" do %>
+<%= link_to user_path(user), class: "link-to" do %>
 <article class="user-card flex-row border mt-3">
   <div class="img-container">
-    <%= image_tag(user.photo, alt: 'user photo') %>
+    <%= image_tag(user.photo, alt: 'user photo', class: "user-photo") %>
   </div>
   <div class="user-info flex-column center-between">
     <h3><%= user.name %></h3>

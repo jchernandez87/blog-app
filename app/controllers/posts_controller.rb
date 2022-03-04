@@ -1,6 +1,5 @@
 class PostsController < ApplicationController
   before_action :update_interactions
-  load_and_authorize_resource
 
   def index
     @user = User.find(params[:user_id])
@@ -10,7 +9,7 @@ class PostsController < ApplicationController
 
   def show
     @user = User.find(params[:user_id])
-    @post = @user.posts.find(params[:id])
+    @post = Post.find(params[:id])
     @comments = Comment.includes(:author).order(created_at: :desc)
   end
 
@@ -22,11 +21,11 @@ class PostsController < ApplicationController
     @post = Post.new
     @post.title = params[:post][:title]
     @post.text = params[:post][:text]
-    @post.author_id = params[:user_id]
+    @post.author_id = current_user.id
     if @post.save
       Post.update_post_count(User.find(current_user.id))
       flash[:success] = 'Post saved successfully'
-      redirect_to user_posts_path(@post.author_id)
+      redirect_to user_posts_path(current_user.id)
     else
       flash.now[:error] = 'Error: Post could not be saved'
       render :new, locals: { post: @post }
@@ -66,5 +65,9 @@ class PostsController < ApplicationController
       Comment.update_comments_counter(post)
       Like.update_likes_counter(post)
     end
+  end
+
+  def post_params
+    params.require(:post).permit(:title, :text)
   end
 end

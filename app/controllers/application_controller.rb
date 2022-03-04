@@ -9,7 +9,9 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:sign_up) do |u|
       u.permit(:name, :photo, :bio, :email, :password, :password_confirmation)
     end
-    devise_parameter_sanitizer.permit(:account_update) { |u| u.permit(:name, :email, :password, :current_password) }
+    devise_parameter_sanitizer.permit(:account_update) do |u|
+      u.permit(:name, :photo, :bio, :email, :password, :current_password)
+    end
   end
 
   rescue_from CanCan::AccessDenied do |exception|

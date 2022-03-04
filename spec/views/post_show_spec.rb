@@ -12,14 +12,15 @@ RSpec.describe 'Post show page', type: :feature do
                      posts_counter: 0)
     @user.skip_confirmation!
     @user.save!
-    @post1 = Post.create(title: 'article 1', text: 'My text', author_id: @user.id)
-    @comment1 = Comment.create(text: 'My comment', author_id: @user.id, post_id: @post1.id)
-    visit user_post_path(@user, @post1)
+    @post = Post.create(title: 'article 1', text: 'My text', author_id: @user.id)
+    @comment = Comment.create(text: 'My comment', author_id: @user.id, post_id: @post.id)
+    Comment.update_comments_counter(@post)
+    visit user_post_path(@user, @post)
   end
 
-  describe 'psot show page' do
+  describe 'post show page' do
     it 'has the correct title' do
-      expect(page).to have_content(@post1.title)
+      expect(page).to have_content(@post.title)
     end
 
     it 'render the user name' do
@@ -35,11 +36,11 @@ RSpec.describe 'Post show page', type: :feature do
     end
 
     it 'has the correct text' do
-      expect(page).to have_content(@post1.text)
+      expect(page).to have_content(@post.text)
     end
 
     it 'has the correct comment' do
-      expect(page).to have_content(@comment1.text)
+      expect(page).to have_content(@comment.text)
     end
 
     it 'has the correct comment author' do

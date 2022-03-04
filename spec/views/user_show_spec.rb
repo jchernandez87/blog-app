@@ -16,6 +16,9 @@ RSpec.describe 'Show User page', type: :feature do
     @post2 = Post.create(title: 'article 2', text: 'My text', author_id: @user.id)
     @post3 = Post.create(title: 'article 3', text: 'My text', author_id: @user.id)
     visit user_path(@user.id)
+    fill_in 'user_email', with: @user.email
+    fill_in 'user_password', with: @user.password
+    click_button 'Log in'
   end
 
   describe 'show page' do

@@ -1,4 +1,6 @@
 class CommentsController < ApplicationController
+  before_action :authenticate_user!, only: %i[create]
+
   def new
     @comment = Comment.new
   end
